@@ -6,10 +6,10 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.ueg.Armas.model.Arma;
@@ -40,27 +40,16 @@ public class ArmasController {
 		return armasRepository.save(arma);
 	}
 	
-	@PostMapping(path = "/{id}")
-	public Arma alterar(@RequestBody Arma arma, @RequestParam Integer id) {
+	@GetMapping(path = "/{id}")
+	public Arma alterar(@PathVariable("id") Integer id) {
 		Optional<Arma> armaBD = armasRepository.findById(id);
 		if(!armaBD.isPresent()) {
 			throw new IllegalStateException("Arma não existe para este ID:"+id);
 		}
-		Arma armaOld = armaBD.get();
-		if(arma.getMarca()!=null) {
-			armaOld.setMarca(arma.getMarca());	
-		}
-		if(arma.getModelo()!=null) {
-			armaOld.setModelo(arma.getModelo());	
-		}
-		if(arma.getCalibre()!=null) {
-			armaOld.setCalibre(arma.getCalibre());	
-		}
-		
-		armasRepository.save(armaOld);
-		return armaOld;
+	
+		return armaBD.get();
 		
 	}
-
+	 
 
 }

@@ -21,8 +21,8 @@ public class ArmasApplication {
 		return args -> {
 			Arma a1 = new Arma(1,"Taurus","TS9",9);
 			repository.save(a1);
-			a1 = new Arma(2,"Glock","G19",9);
-		    repository.save(a1);
+			Arma a2 = new Arma(2,"Glock","G19",9);
+		    repository.save(a2);
 		};
 	}
 
