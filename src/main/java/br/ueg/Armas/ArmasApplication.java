@@ -15,7 +15,7 @@ public class ArmasApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ArmasApplication.class, args);
 	}
-	
+
 	@Bean
 	public CommandLineRunner run(ArmasRepository repository) {
 		return args -> {
